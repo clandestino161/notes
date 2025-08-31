@@ -1,37 +1,87 @@
 # CLI Notes
 
-A simple Neovim-based note-taking CLI application written in Python with Markdown support, note management, and export to PDF/HTML.
+A simple Neovim-based note-taking CLI application with Markdown support, note management, export to HTML/PDF, and backup functionality.
 
-## Requirements
+---
 
-* Python 3.8+
-* Neovim installed
-* pipx installed (`python3 -m pip install --user pipx && python3 -m pipx ensurepath`)
+## Requirements (for development)
 
-## Installation
+* Python 3.8+ (only if building from source)
+* Neovim installed (or any $EDITOR for editing notes)
+* Git installed (for cloning the repository)
 
-The recommended way is to use **pipx** so you can run `notes` globally:
+---
+
+## Installation (End Users)
+
+You can download pre-built binaries for your system from the [Releases page](https://github.com/clandestino161/notes/releases).
+
+### Linux
+
+1. Download the Linux binary `notes-linux`.
+2. Make it executable:
 
 ```bash
-pip install pipx
-pipx install git+https://github.com/clandestino161/notes.git
+chmod +x notes-linux
 ```
 
-To update the app after changes:
+3. Move it to a directory in your PATH, e.g.:
 
 ```bash
-pipx upgrade notes
+sudo mv notes-linux /usr/local/bin/notes
 ```
+
+4. Run it:
+
+```bash
+notes add --title "My First Note"
+```
+
+### macOS
+
+1. Download the macOS binary `notes-macos`.
+2. Make it executable:
+
+```bash
+chmod +x notes-macos
+```
+
+3. Move it to a directory in your PATH, e.g.:
+
+```bash
+sudo mv notes-macos /usr/local/bin/notes
+```
+
+4. Run it:
+
+```bash
+notes list
+```
+
+### Windows
+
+1. Download the Windows binary `notes-windows.exe`.
+2. Move it to a folder in your PATH (e.g., `C:\Windows\System32` or any folder added to PATH).
+3. Run it from Command Prompt or PowerShell:
+
+```powershell
+notes.exe add --title "My First Note"
+```
+
+---
 
 ## Features
 
-* create notes in markdown from the cli and open them directly in neovim
-* set a status (open, in progress, done) for each note (default is open)
-* modify notes directly in neovim
-* access all notes from anywhere
-* delete notes from anywhere
-* display all notes in a list with Title, Status, and Last Modified date
-* backup all notes (`.md` files) as a zip archive directly into the downloads directory
+* Create notes in Markdown from the CLI and open them directly in Neovim (or default \$EDITOR)
+* Set a status (`open`, `in progress`, `done`) for each note (default: `open`)
+* Modify notes directly in your editor
+* Access all notes from anywhere
+* Delete notes
+* List notes with Title, Status, and Last Modified date
+* Export notes individually or all at once to HTML/PDF in the user’s Downloads directory
+* Backup all notes as a ZIP archive in the user’s Downloads directory
+
+---
 
 ## Usage
 
@@ -39,23 +89,17 @@ All commands can be run from anywhere after installation.
 
 ### Add a new note
 
-Creates a new note and immediately opens it in Neovim:
-
 ```bash
 notes add --title "Title of the Note"
 ```
 
 ### Edit a note
 
-Open an existing note in Neovim:
-
 ```bash
 notes edit --title "Title of the Note"
 ```
 
 ### Delete a note
-
-Delete an existing note:
 
 ```bash
 notes delete --title "Title of the Note"
@@ -86,27 +130,13 @@ notes status --title "Title of the Note" --set "done"
 
 ### Export notes
 
-Export as PDF:
-
-```bash
-notes export --title "First Note" --pdf
-```
-
-Export as HTML:
-
-```bash
-notes export --title "First Note" --html
-```
-
-Export as both PDF and HTML:
-
-Export a single note
+Export a single note:
 
 ```bash
 notes export --title "First Note" --pdf --html
 ```
 
-Export all notes
+Export all notes:
 
 ```bash
 notes export --all --pdf --html
@@ -114,11 +144,11 @@ notes export --all --pdf --html
 
 ### Backup all notes
 
-Creates a zip archive in the user’s Downloads directory including all `.md` notes:
-
 ```bash
 notes backup
 ```
+
+---
 
 ## Notes Directory
 
@@ -130,19 +160,40 @@ All notes are stored in a standard location:
 
 The directory is created automatically on first run.
 
+---
+
 ## Uninstallation
 
-To completely uninstall notes:
+Remove the binary from your PATH:
 
 ```bash
-pipx uninstall notes && rm -f /usr/local/bin/notes
+# Linux/macOS
+sudo rm /usr/local/bin/notes
+
+# Windows
+# Delete notes.exe from your PATH folder
 ```
 
-If you also want to delete all your saved notes (⚠ irreversible):
+Optionally, delete all saved notes (⚠ irreversible):
 
 ```bash
 rm -rf ~/.local/share/notes
 ```
+
+---
+
+## Development (Optional)
+
+To build from source:
+
+```bash
+git clone https://github.com/clandestino161/notes.git
+cd notes
+python3 -m pip install -r requirements.txt
+python3 src/notes/main.py add --title "Test Note"
+```
+
+---
 
 ## License
 

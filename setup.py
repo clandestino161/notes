@@ -14,7 +14,7 @@ class PostInstallCommand(install):
 
 setup(
     name='notes',
-    version='0.9',
+    version='0.9.1',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=[
