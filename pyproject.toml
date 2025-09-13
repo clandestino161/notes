@@ -1,0 +1,88 @@
+# pyproject.toml – Project definition for the “notes” CLI
+# ======================================================
+# This file follows PEP 518 / PEP 621 conventions and defines
+# the build system, dependencies, entry points, and metadata.
+# -----------------------------------------------------------
+
+# -----------------------------------------------------------------
+# Build system configuration (PEP 518)
+# -----------------------------------------------------------------
+[build-system]
+# Hatchling is the build backend
+# hatch-vcs integrates versioning from Git tags
+requires = [
+    "hatchling",
+    "hatch-vcs",
+]
+# Entry point for building
+build-backend = "hatchling.build"
+
+
+# -----------------------------------------------------------------
+# Project metadata (PEP 621)
+# -----------------------------------------------------------------
+[project]
+# Distribution name on PyPI
+name = "notes"
+
+# Version is dynamically provided by hatch-vcs (from Git tags)
+dynamic = ["version"]
+
+# Short description shown on PyPI
+description = "A simple terminal-based note-taking CLI"
+
+# Long description (rendered on PyPI), points to README.md
+readme = "README.md"
+
+# Minimum Python version required
+requires-python = ">=3.8"
+
+# Licensing information
+license = { text = "MIT" }
+
+# Authors and contact details
+authors = [
+    { name = "clandestino161", email = "clandestino161@pm.me" },
+]
+
+# Runtime dependencies required by the CLI
+dependencies = [
+    "rich",        # For styled terminal output
+    "markdown2",   # Convert markdown notes to HTML
+    "weasyprint",  # Generate PDF exports from HTML
+]
+
+# Optional dependencies grouped under "dev"
+# Install with: `pip install .[dev]`
+[project.optional-dependencies]
+dev = [
+    "pytest",  # Testing framework
+    "ruff",    # Linter/formatter
+]
+
+# -----------------------------------------------------------------
+# Entry points for executables (console scripts)
+# -----------------------------------------------------------------
+[project.scripts]
+# Installs a CLI command `notes` that calls `notes.main:main`
+notes = "notes.main:main"
+
+# -----------------------------------------------------------------
+# Project URLs (helpful links shown on PyPI)
+# -----------------------------------------------------------------
+[project.urls]
+Homepage = "https://github.com/clandestino161/notes"
+Repository = "https://github.com/clandestino161/notes.git"
+Issues = "https://github.com/clandestino161/notes/issues"
+Documentation = "https://github.com/clandestino161/notes#readme"
+
+
+# -----------------------------------------------------------------
+# Hatch configuration
+# -----------------------------------------------------------------
+[tool.hatch.version]
+# Source version from Git tags via hatch-vcs
+source = "vcs"
+
+# Fallback version if no Git tags are available
+fallback = "0.0.0"
