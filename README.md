@@ -36,7 +36,7 @@ sudo mv notes /usr/local/bin/notes
 6. Run the program:
 
 ```bash
-notes add --title "My First Note"
+notes add --title "Title of the Note"
 ```
 
 ## Features
@@ -78,13 +78,6 @@ Shows all saved notes without opening them:
 ```bash
 notes list
 ```
-┏━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
-┃ Title       ┃ Status       ┃ Last Modified   ┃
-┡━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
-│ First Note  │ open         │ 2025-08-24 12:42│
-│ Second Note │ in progress  │ 2025-08-24 13:10│
-│ Done Note   │ done         │ 2025-08-24 14:05│
-└─────────────┴──────────────┴─────────────────┘
 
 ### Change the status of an existing note
 
@@ -129,7 +122,7 @@ Remove the binary from your $PATH:
 sudo rm /usr/local/bin/notes
 ```
 
-Optionally, delete all saved notes (⚠️ irreversible):
+Optionally, delete all saved notes (irreversible):
 
 ```bash
 rm -rf ~/.local/share/notes
